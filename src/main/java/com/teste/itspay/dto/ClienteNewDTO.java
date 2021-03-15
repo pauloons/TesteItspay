@@ -13,8 +13,7 @@ public class ClienteNewDTO implements Serializable {
     private String email;
     private String cpfOuCnpj;
     private Integer tipo;
-
-
+    private Integer valorAPagar;
 
     public ClienteNewDTO(){
 
@@ -58,5 +57,13 @@ public class ClienteNewDTO implements Serializable {
 
     public void setTipo(Integer tipo) {
         this.tipo = tipo;
+    }
+
+    public Integer getValorAPagar() {
+        return valorAPagar;
+    }
+
+    public void setValorAPagar(Integer valorAPagar) {
+        this.valorAPagar = valorAPagar;
     }
 }

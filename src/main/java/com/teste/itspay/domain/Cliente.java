@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 
 @Entity
 public class Cliente  implements Serializable {
@@ -19,21 +20,21 @@ public class Cliente  implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	
 	//@Column(unique = true)	
 	private String email;
 	private String cpfOuCnpj;
 	private Integer tipo;
-
+	private Integer valorAPagar;
 	public Cliente() {
 
 	}
-	public Cliente(Integer id, String nome, String email, String cpfOuCnpj, Tipo_Cliente tipo) {
+	public Cliente(Integer id, String nome, String email, String cpfOuCnpj, Tipo_Cliente tipo, Integer valorAPagar) {
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.cpfOuCnpj = cpfOuCnpj;
 		this.tipo = (tipo==null) ? null : tipo.getCod();
+		this.valorAPagar = valorAPagar;
 	}
 
 	public Integer getId() {
@@ -79,6 +80,14 @@ public class Cliente  implements Serializable {
 	public void setTipo(Integer tipo) {
 		this.tipo = tipo;
 	}
+
+	public Integer getvalorAPagar() {
+		return valorAPagar;
+	}
+	public void setvalorAPagar(Integer valorAPagar) {
+		this.valorAPagar = valorAPagar;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

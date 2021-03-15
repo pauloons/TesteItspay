@@ -33,12 +33,21 @@ public class ClienteService {
 		obj.setId(null);
    return repo.save(obj);
     }
-
+	private void updateData(Cliente newObj, Cliente obj) {
+		newObj.setvalorAPagar(newObj.getvalorAPagar());
+	}
+	public Cliente update(Cliente obj) {
+		Cliente newObj = find(obj.getId());
+		newObj.setvalorAPagar(newObj.getvalorAPagar());
+		updateData(newObj, obj);
+		return repo.save(newObj);
+	}
 /*	public Cliente fromDTO(ClienteDTO objDto) {
 		return new Cliente(objDto.getId(), objDto.getNome(), objDto.getEmail(),objDto.getCpfOuCnpj(), Tipo_Cliente.toEnum(objDto.getTipo()));
 	}*/
 	public Cliente fromDTO(ClienteNewDTO objDto) {
-		Cliente cli = new Cliente(null, objDto.getNome(), objDto.getEmail(), objDto.getCpfOuCnpj(), Tipo_Cliente.toEnum(objDto.getTipo()));
+		Cliente cli = new Cliente(null, objDto.getNome(), objDto.getEmail(), objDto.getCpfOuCnpj(),
+				Tipo_Cliente.toEnum(objDto.getTipo()),objDto.getValorAPagar());
 		return cli;
 	}
 }

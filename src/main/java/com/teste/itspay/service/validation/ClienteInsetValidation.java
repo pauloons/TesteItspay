@@ -20,7 +20,6 @@ public class ClienteInsetValidation implements ConstraintValidator<ClienteInsert
 
   List<FieldMessage> list = new ArrayList<>();
 
-
   // inclua os testes aqui, inserindo erros na lista
   if (!Br.isValidCPF(objDto.getCpfOuCnpj()) && objDto.getTipo().equals(Tipo_Cliente.PESSOAFISICA.getCod())) {
    list.add(new FieldMessage("cpfOuCnpj", "CPF Inválido"));
