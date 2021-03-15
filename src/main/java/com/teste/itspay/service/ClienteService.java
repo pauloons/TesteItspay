@@ -3,6 +3,8 @@ package com.teste.itspay.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.teste.itspay.domain.enums.Tipo_Cliente;
+import com.teste.itspay.dto.ClienteNewDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,9 +33,12 @@ public class ClienteService {
 		obj.setId(null);
    return repo.save(obj);
     }
-	
-	public Cliente fromDTO(ClienteDTO objDto) {
-		return new Cliente(objDto.getId(), objDto.getNome(),objDto.getEmail(),objDto.getCpfOuCnpj());
+
+/*	public Cliente fromDTO(ClienteDTO objDto) {
+		return new Cliente(objDto.getId(), objDto.getNome(), objDto.getEmail(),objDto.getCpfOuCnpj(), Tipo_Cliente.toEnum(objDto.getTipo()));
+	}*/
+	public Cliente fromDTO(ClienteNewDTO objDto) {
+		Cliente cli = new Cliente(null, objDto.getNome(), objDto.getEmail(), objDto.getCpfOuCnpj(), Tipo_Cliente.toEnum(objDto.getTipo()));
+		return cli;
 	}
-	
 }

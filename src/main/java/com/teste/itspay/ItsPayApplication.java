@@ -2,6 +2,7 @@ package com.teste.itspay;
 
 import java.util.Arrays;
 
+import com.teste.itspay.domain.enums.Tipo_Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -22,8 +23,10 @@ public class ItsPayApplication implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception {
-		
-		Cliente cli1 = new Cliente(null,"Paulo Alexandre", "pauloons@gmail.com", "02380509123");
-		clienteRepository.saveAll(Arrays.asList(cli1));
+
+		Cliente cli1 = new Cliente(null, "Paulo", "pauloons@gmail.com", "0238050923", Tipo_Cliente.PESSOAFISICA);
+		Cliente cli2 = new Cliente(null, "Thamyres", "thamyres@gmail.com", "017657745", Tipo_Cliente.PESSOAFISICA);
+		Cliente cli3 = new Cliente(null, "Gabriel", "gabi@gmail.com", "0238050923", Tipo_Cliente.PESSOAJURIDICA);
+		clienteRepository.saveAll(Arrays.asList(cli1,cli2,cli3));
 	}
 }

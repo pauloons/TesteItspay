@@ -1,10 +1,14 @@
 package com.teste.itspay.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.teste.itspay.domain.enums.Tipo_Cliente;
+
 import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import javax.persistence.*;
 
 @Entity
 public class Cliente  implements Serializable {
@@ -19,44 +23,62 @@ public class Cliente  implements Serializable {
 	//@Column(unique = true)	
 	private String email;
 	private String cpfOuCnpj;
-	
-	public Cliente() {
-		
-	}
+	private Integer tipo;
 
-	public Cliente(Integer id, String nome, String email, String cpfOuCnpj) {
-		super();
+	public Cliente() {
+
+	}
+	public Cliente(Integer id, String nome, String email, String cpfOuCnpj, Tipo_Cliente tipo) {
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.cpfOuCnpj = cpfOuCnpj;
+		this.tipo = (tipo==null) ? null : tipo.getCod();
 	}
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getCpfOuCnpj() {
 		return cpfOuCnpj;
 	}
+
 	public void setCpfOuCnpj(String cpfOuCnpj) {
 		this.cpfOuCnpj = cpfOuCnpj;
 	}
 
+	public Tipo_Cliente getTipo() {
+		return Tipo_Cliente.toEnum(tipo);
+	}
 
+	public void setTipo(Tipo_Cliente tipo) {
+		this.tipo = tipo.getCod();
+	}
+
+	public void setTipo(Integer tipo) {
+		this.tipo = tipo;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -64,7 +86,6 @@ public class Cliente  implements Serializable {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -82,8 +103,6 @@ public class Cliente  implements Serializable {
 			return false;
 		return true;
 	}
-
-	
 }
 
 
